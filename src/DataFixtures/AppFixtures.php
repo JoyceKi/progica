@@ -76,10 +76,10 @@ class AppFixtures extends Fixture
                 $gite->setAdresse($adresse);
 
                 // j'ajoute les tarifs
-                $tarif = new TarifGite();
-                $tarif->setTarifHebdo(550);
-                $manager->persist($tarif);
-                $gite->addTarifGite($tarif);
+                // $tarif = new TarifGite();
+                // $tarif->setTarifHebdo(550);
+                // $manager->persist($tarif);
+                // $gite->addTarifGite($tarif);
 
                 $manager->persist($gite);  
                 // j'ajoute les disponibilités et les associe aux propriétaires
@@ -102,17 +102,17 @@ class AppFixtures extends Fixture
         }
 
         // j'ajoute les périodes et les associe aux tarifs de gîtes
-        $periode = new Periode();
-        $periode->setNom("Haute saison");
+        // $periode = new Periode();
+        // $periode->setNom("Haute saison");
 
         // Création objets DateTime pour dateDebut et dateFin
-        $dateDebut = DateTime::createFromFormat('Y-m-d', '2024-06-15');
-        $periode->setDateDebut($dateDebut);
+        // $dateDebut = DateTime::createFromFormat('Y-m-d', '2024-06-15');
+        // $periode->setDateDebut($dateDebut);
 
-        $dateFin = DateTime::createFromFormat('Y-m-d', '2024-09-30');
-        $periode->setDateFin($dateFin);
-        $tarif->addPeriode($periode);
-        $manager->persist($periode);
+        // $dateFin = DateTime::createFromFormat('Y-m-d', '2024-09-30');
+        // $periode->setDateFin($dateFin);
+        // $tarif->addPeriode($periode);
+        // $manager->persist($periode);
         
         // Après avoir tout ajouté, je flush les données dans la bdd
         $manager->flush();

@@ -41,20 +41,20 @@ class Gite
     #[ORM\JoinColumn(nullable: false)]
     private ?Adresse $adresse = null;
 
-    #[ORM\ManyToMany(targetEntity: TarifGite::class, inversedBy: 'gites')]
-    private Collection $tarifGite;
-
     #[ORM\ManyToMany(targetEntity: Equipement::class, inversedBy: 'gites')]
     private Collection $equipement;
 
     #[ORM\ManyToMany(targetEntity: Service::class, inversedBy: 'gites')]
     private Collection $service;
 
+    #[ORM\ManyToMany(targetEntity: TarifPeriode::class, mappedBy: 'gite')]
+    private Collection $tarifPeriodes;
+
     public function __construct()
     {
-        $this->tarifGite = new ArrayCollection();
         $this->equipement = new ArrayCollection();
         $this->service = new ArrayCollection();
+        $this->tarifPeriodes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -159,30 +159,6 @@ class Gite
     }
 
     /**
-     * @return Collection<int, TarifGite>
-     */
-    public function getTarifGite(): Collection
-    {
-        return $this->tarifGite;
-    }
-
-    public function addTarifGite(TarifGite $tarifGite): static
-    {
-        if (!$this->tarifGite->contains($tarifGite)) {
-            $this->tarifGite->add($tarifGite);
-        }
-
-        return $this;
-    }
-
-    public function removeTarifGite(TarifGite $tarifGite): static
-    {
-        $this->tarifGite->removeElement($tarifGite);
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, Equipement>
      */
     public function getEquipement(): Collection
@@ -226,6 +202,33 @@ class Gite
     public function removeService(Service $service): static
     {
         $this->service->removeElement($service);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, TarifPeriode>
+     */
+    public function getTarifPeriodes(): Collection
+    {
+        return $this->tarifPeriodes;
+    }
+
+    public function addTarifPeriode(TarifPeriode $tarifPeriode): static
+    {
+        if (!$this->tarifPeriodes->contains($tarifPeriode)) {
+            $this->tarifPeriodes->add($tarifPeriode);
+            $tarifPeriode->addGite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTarifPeriode(TarifPeriode $tarifPeriode): static
+    {
+        if ($this->tarifPeriodes->removeElement($tarifPeriode)) {
+            $tarifPeriode->removeGite($this);
+        }
 
         return $this;
     }
