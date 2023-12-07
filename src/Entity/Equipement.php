@@ -16,7 +16,7 @@ class Equipement
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $nom = null;
+    private ?string $equipements = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
@@ -37,14 +37,14 @@ class Equipement
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getEquipements(): ?string
     {
-        return $this->nom;
+        return $this->equipements;
     }
 
-    public function setNom(string $nom): static
+    public function setEquipements(string $equipements): static
     {
-        $this->nom = $nom;
+        $this->equipements = $equipements;
 
         return $this;
     }

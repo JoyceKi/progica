@@ -3,15 +3,42 @@
 {% block title %}Accueil {% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
 <div class=" container  ">
+    <h1 class="text-center mb-4">Bienvenue !</h1>
     <div class="row">
-        <h1 class="text-center">Bienvenue !</h1>
-        <h2 class="text-center bg-info">Liste des gîtes</h2>
+    
+    <h3 class="mb-3">Recherche de Gîtes</h3>
+    <div class="row d-flex mb-3">
+        {{ form_start(form, {'attr': {'class': 'w-100 d-flex flex-wrap'}}) }}
+        <div class="col-md-3">
+            {{ form_row(form.region) }} 
+        </div>
+        <div class="col-md-3">
+            {{ form_row(form.departement) }} 
+        </div>
+        <div class="col-md-3">
+            {{ form_row(form.ville) }}
+        </div>
+        <div class="col-md-3">
+            {{ form_row(form.equipements) }}
+        </div>
+        <div class="col-md-3">
+            {{ form_row(form.services) }}
+        </div>
+        <div class="col-md-3">
+            {{ form_row(form.animauxacceptes) }}
+        </div>
+        <div class="col-md-3">
+            {{ form_row(form.rechercher) }}
+        </div>
+        
+        {{ form_end(form) }}
+    </div>
+</div>
+
+        
+        <h2 class="text-center bg-info mb-5">Liste des gîtes</h2>
 
         <ul class="d-flex flex-row flex-wrap">
         {% for gite in gites %}

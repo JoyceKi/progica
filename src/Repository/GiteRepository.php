@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Gite;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -29,6 +30,15 @@ class GiteRepository extends ServiceEntityRepository
             ->join('g.proprietaire', 'p')
             ->getQuery()
             ->getResult();
+    }
+    public function SearchGite() : QueryBuilder
+    {
+        return $this->createQueryBuilder('g')
+            ->select('g','a','p')
+            ->join('g.adresse', 'a')
+            ->join('g.proprietaire', 'p')
+            ->join('g.equipement', 'e')
+            ->join('g.service', 's');
     }
 
 //    /**
