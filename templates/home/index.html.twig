@@ -32,7 +32,9 @@
         <div class="col-md-3">
             {{ form_row(form.rechercher) }}
         </div>
-        
+        <div class="col-md-3">
+                        <a href="{{ path('app_home') }}" class="btn btn-info btn">Réinitialiser les filtres</a>
+                    </div>
         {{ form_end(form) }}
     </div>
 </div>
