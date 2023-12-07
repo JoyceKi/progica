@@ -21,6 +21,16 @@ class GiteRepository extends ServiceEntityRepository
         parent::__construct($registry, Gite::class);
     }
 
+    public function findAllWithRelations()
+    {
+        return $this->createQueryBuilder('g')
+            ->select('g','a','p')
+            ->join('g.adresse', 'a')
+            ->join('g.proprietaire', 'p')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Gite[] Returns an array of Gite objects
 //     */
